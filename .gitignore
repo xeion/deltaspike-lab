@@ -1,0 +1,14 @@
+# Ignore all bin directories
+bin
+# Ignore all files ending with ~
+*~
+# Ignore the target directory
+# Matches "target" in any subfolder
+target/
+# Ignore all .metadata
+.metadata
+# ignore idea
+.idea
+*.iml
+*.iws
+*.ipr

@@ -17,6 +17,7 @@
         <logback.version>1.0.7</logback.version>
         <!--<logback.version>0.9.18</logback.version>-->
         <deltaspike.version>0.4-incubating-SNAPSHOT</deltaspike.version>
+        <shiro.version>1.2.1</shiro.version>
 
         <arquillian.version>1.0.3.Final</arquillian.version>
     </properties>
@@ -78,7 +79,7 @@
             <version>${deltaspike.version}</version>
             <scope>compile</scope>
         </dependency>
-       <dependency>
+        <dependency>
             <groupId>org.apache.deltaspike.core</groupId>
             <artifactId>deltaspike-core-impl</artifactId>
             <version>${deltaspike.version}</version>
@@ -99,19 +100,25 @@
             <scope>runtime</scope>
         </dependency>
 
-<!--
+        <!--
+                <dependency>
+                    <groupId>com.ocpsoft</groupId>
+                    <artifactId>prettyfaces-jsf2</artifactId>
+                    <version>3.3.3</version>
+                </dependency>
+        -->
+
         <dependency>
-            <groupId>com.ocpsoft</groupId>
-            <artifactId>prettyfaces-jsf2</artifactId>
-            <version>3.3.3</version>
+        	<groupId>org.omnifaces</groupId>
+        	<artifactId>omnifaces</artifactId>
+        	<version>1.4.1</version>
         </dependency>
--->
 
         <!-- Java EE -->
         <dependency>
-        	<groupId>org.glassfish.extras</groupId>
-        	<artifactId>javaee</artifactId>
-        	<version>3.1.1</version>
+            <groupId>org.glassfish.extras</groupId>
+            <artifactId>javaee</artifactId>
+            <version>3.1.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -127,9 +134,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-        	<groupId>org.glassfish</groupId>
-        	<artifactId>javax.faces</artifactId>
-        	<version>2.1.16</version>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>2.1.16</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -150,6 +157,23 @@
             <artifactId>deltaspike-security-module-impl</artifactId>
             <version>${deltaspike.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Shiro -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-aspectj</artifactId>
+            <version>${shiro.version}</version>
         </dependency>
 
         <!-- Testing -->

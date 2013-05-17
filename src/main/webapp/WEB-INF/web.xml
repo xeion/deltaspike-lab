@@ -5,11 +5,46 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <session-config>
+        <!-- web.xml expects the session timeout in minutes: -->
+        <session-timeout>30</session-timeout>
+    </session-config>
 
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
     </context-param>
+
+    <context-param>
+        <param-name>org.omnifaces.FACES_VIEWS_SCAN_PATHS</param-name>
+        <param-value>/*.xhtml</param-value>
+    </context-param>
+
+<!-- for viewexpired exception or use OmniFaces <o:enableRestorableView> -->
+<!--
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>client</param-value>
+    </context-param>
+-->
+
+    <!-- Shiro -->
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.apache.shiro.web.servlet.ShiroFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+    </filter-mapping>
 
     <!-- Faces Servlet -->
     <servlet>
@@ -26,8 +61,8 @@
     <!-- This is an optional parameter, but it makes troubleshooting errors much easier -->
     <!-- You are advised to delete this context parameter before a production deployment -->
     <context-param>
-       <param-name>facelets.DEVELOPMENT</param-name>
-       <param-value>true</param-value>
+        <param-name>facelets.DEVELOPMENT</param-name>
+        <param-value>true</param-value>
     </context-param>
 
     <welcome-file-list>

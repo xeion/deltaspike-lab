@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions">
+
+<f:view contentType="text/html">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>deltaspike</title>
+        </f:facet>
+    </h:head>
+
+    <f:metadata>
+        <!-- fix ViewExpiredException -->
+        <o:enableRestorableView/>
+    </f:metadata>
+
+    <h:body>
+
+        <h2>Login</h2>
+
+        <o:form includeViewParams="true" id="login">
+
+            <h:panelGrid columns="3">
+                <h:outputLabel for="username" value="Username:" />
+                <h:inputText id="username" value="#{login.username}" required="true">
+                    <f:ajax event="blur" render="m_username" />
+                </h:inputText>
+                <h:message id="m_username" for="username" />
+
+                <h:outputLabel for="password" value="Password:" />
+                <h:inputSecret id="password" value="#{login.password}" required="true">
+                    <f:ajax event="blur" render="m_password" />
+                </h:inputSecret>
+                <h:message id="m_password" for="password" />
+
+                <h:outputLabel for="rememberMe" value="Remember Me:" />
+                <h:selectBooleanCheckbox id="rememberMe" value="#{login.remember}" />
+                <h:panelGroup />
+
+                <h:panelGroup />
+                <h:commandButton value="Login" action="#{login.submit}" >
+                    <f:ajax execute="@form" render="@form" />
+                </h:commandButton>
+                <h:messages globalOnly="true" layout="table" />
+
+            </h:panelGrid>
+            <div>
+                <h:link outcome="/secured/secure.jsf">Secured link</h:link>
+            </div>
+            <div>
+                <h:link outcome="/logout.jsf">Logout</h:link>
+            </div>
+        </o:form>
+
+    </h:body>
+</f:view>
+</html>

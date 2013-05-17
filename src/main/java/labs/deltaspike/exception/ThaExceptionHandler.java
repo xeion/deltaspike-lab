@@ -1,5 +1,7 @@
 package labs.deltaspike.exception;
 
+import javax.faces.application.ViewExpiredException;
+
 import org.apache.deltaspike.core.api.exception.control.BeforeHandles;
 import org.apache.deltaspike.core.api.exception.control.ExceptionHandler;
 import org.apache.deltaspike.core.api.exception.control.Handles;
@@ -19,9 +21,16 @@ public class ThaExceptionHandler
 {
     private static final Logger logger = LoggerFactory.getLogger(ThaExceptionHandler.class);
 
-    public void logException(@BeforeHandles @Handles ExceptionEvent<Throwable> evt)
+    public void handleViewExpiredException(@Handles ExceptionEvent<ViewExpiredException> evt)
+    {
+        logger.warn("(handleViewExpiredException) {} ignored!", evt.getException().getMessage());
+        evt.handled();
+    }
+
+    public void logException(@Handles ExceptionEvent<Throwable> evt)
     {
         logger.error("(logException)", evt.getException());
         evt.handledAndContinue();
     }
+
 }

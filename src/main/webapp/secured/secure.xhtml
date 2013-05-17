@@ -9,7 +9,7 @@
     <h:head>
         <f:facet name="first">
             <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-            <title>deltaspike</title>
+            <title>SECURE!</title>
         </f:facet>
     </h:head>
 
@@ -21,18 +21,16 @@
     <h:body>
         <h:form>
             <div>
-                #{testBean.sayHello('Kurt')}!
-                <b>ProjectStage: </b> <h:outputText value="#{testBean.projectStage}" />
-                <b>Deltaspike projectstage: </b> <h:outputText value="#{testBean.deltaSpikeProjectStage()}" />
+                Secure page!
             </div>
 
             <div>
-                <h:commandButton value="Fire!!" action="#{testBean.fireException}"/>
-                <h:commandButton value="Throw!!" action="#{testBean.throwException}"/>
-            </div>
-            <div>
                 <h:link outcome="/login.jsf">Login</h:link>
             </div>
+            <div>
+                <h:link outcome="/logout.jsf">Logout</h:link>
+            </div>
+
         </h:form>
     </h:body>
 </f:view>

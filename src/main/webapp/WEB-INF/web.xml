@@ -20,6 +20,21 @@
         <param-value>/*.xhtml</param-value>
     </context-param>
 
+
+<!--
+    <data-source>
+        <name>java:app/H2/test</name>
+        <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
+        <url>jdbc:h2:~/test</url>
+        <user>sa</user>
+        <password>sa</password>
+        <transactional>false</transactional> &lt;!&ndash; https://community.jboss.org/message/730085 &ndash;&gt;
+        <max-pool-size>10</max-pool-size>
+        <min-pool-size>5</min-pool-size>
+        <max-statements>0</max-statements>
+    </data-source>
+-->
+
 <!-- for viewexpired exception or use OmniFaces <o:enableRestorableView> -->
 <!--
     <context-param>

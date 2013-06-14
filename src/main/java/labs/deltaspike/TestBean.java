@@ -32,7 +32,7 @@ public class TestBean implements Serializable
     private ProjectStage projectStage;
 
     @Inject
-    private ThaMessages messages;
+    private transient ThaMessages messages;
 
     @Inject
     private Event<ExceptionToCatchEvent> exceptionEvent;

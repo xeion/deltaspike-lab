@@ -14,6 +14,8 @@
         <shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
         <!--<shared-cache-mode>NONE</shared-cache-mode>-->
         <properties>
+            <property name="eclipselink.target-database" value="PostgreSQL"/>
+
             <property name="eclipselink.cache.shared.default" value="true"/>
             <!--<property name="eclipselink.cache.type.default" value="FULL"/>-->
             <property name="eclipselink.cache.size.default" value="500000"/>
@@ -28,13 +30,13 @@
 -->
             <!-- Use logger bridge else logging goes into app server log -->
             <property name="eclipselink.logging.logger" value="org.eclipse.persistence.logging.DefaultSessionLog"/>
+            <!-- custom SessionLog implementation to use apache commons logging 1.1 API (so log4J) -->
+            <!--<property name="eclipselink.logging.logger" value="org.eclipse.persistence.logging.CommonsLoggingSessionLog"/>-->
 
-            <property name="eclipselink.ddl-generation" value="create-tables" />
-            <!--<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>-->
-            <property name="eclipselink.ddl-generation.output-mode" value="both"/>
+            <!--<property name="eclipselink.ddl-generation" value="create-tables" />-->
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <!--<property name="eclipselink.ddl-generation.output-mode" value="both"/>-->
             <!--<property name="eclipselink.ddl-generation.output-mode"  value="database" />-->
-            <property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
-            <property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
 
         </properties>
     </persistence-unit>

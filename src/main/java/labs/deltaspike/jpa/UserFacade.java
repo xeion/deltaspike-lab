@@ -16,6 +16,9 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * TODO: Class description
  *
@@ -23,11 +26,16 @@ import javax.persistence.PersistenceContext;
  *         University Library, Sweden
  * @version $Revision$, $Date$, $Author$
  */
-@Startup
-@Singleton
+//@Startup
+//@Singleton
 @Stateless
+//@Named
 public class UserFacade implements Serializable
 {
+    private static final long serialVersionUID = 3535737801622200893L;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserFacade.class);
+
     @PersistenceContext(unitName = "deltaspikePU")
     private EntityManager em;
 
@@ -41,14 +49,14 @@ public class UserFacade implements Serializable
             .getSingleResult();
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+//    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     @Produces
     @Named("users")
     public List<User> list() {
         return em.createNamedQuery("User.list", User.class).getResultList();
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+//    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Integer create(User user) {
         em.persist(user);
         return user.getId();
@@ -62,11 +70,12 @@ public class UserFacade implements Serializable
         em.remove(em.contains(user) ? user : em.merge(user));
     }
 
-    @PostConstruct
     public void init()
     {
         List<Role> roles = new ArrayList<>();
         roles.add(Role.ADMIN);
         create(new User("daner275", "Daniel", "Eriksson", roles));
+        logger.debug("initiated users...");
     }
+
 }

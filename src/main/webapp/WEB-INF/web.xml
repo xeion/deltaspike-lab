@@ -20,6 +20,27 @@
         <param-value>/*.xhtml</param-value>
     </context-param>
 
+<!--
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>shiroEnvironmentClass</param-name>
+        <param-value>org.apache.shiro.cdi.web.CdiIniWebEnvironment</param-value>
+    </context-param>
+
+-->
+    <context-param>
+        <param-name>shiroEnvironmentClass</param-name>
+        <param-value>org.apache.shiro.cdi.web.CdiIniWebEnvironment</param-value>
+    </context-param>
+
+
+    <listener>
+        <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
+    </listener>
+
 
 <!--
     <data-source>
@@ -44,9 +65,11 @@
 -->
 
     <!-- Shiro -->
+<!-- Use CDIEnvironmentLoaderListener
     <listener>
         <listener-class>org.apache.shiro.web.env.EnvironmentLoaderListener</listener-class>
     </listener>
+-->
 
     <filter>
         <filter-name>shiroFilter</filter-name>

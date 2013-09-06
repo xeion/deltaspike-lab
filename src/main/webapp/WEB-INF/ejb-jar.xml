@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+    version="3.1">
+
+    <!--
+    CDI interceptor for ejb, also add interceptor to beans.xml (@AroundInvoke) see http://balusc.blogspot.se/2013/01/apache-shiro-is-it-ready-for-java-ee-6.html
+    <interceptors>
+        <interceptor>
+            <interceptor-class>com.example.interceptor.ShiroSecuredInterceptor</interceptor-class>
+        </interceptor>
+    </interceptors>
+    <assembly-descriptor>
+        <interceptor-binding>
+            <ejb-name>*</ejb-name>
+            <interceptor-class>com.example.interceptor.ShiroSecuredInterceptor</interceptor-class>
+        </interceptor-binding>
+    </assembly-descriptor>
+-->
+</ejb-jar>

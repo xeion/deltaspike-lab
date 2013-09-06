@@ -5,7 +5,22 @@
        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://jboss.org/schema/cdi/beans_1_0.xsd">
 
 
+
+<!--
     <interceptors>
-        <class>org.apache.deltaspike.security.impl.extension.SecurityInterceptor</class>
+        <class>org.apache.shiro.cdi.interceptor.ShiroInterceptor</class>
     </interceptors>
+-->
+
+<!--
+        <interceptors>
+            <class>org.apache.deltaspike.security.impl.extension.SecurityInterceptor</class>
+        </interceptors>
+-->
+
+<!--
+    <interceptors>
+        <class>labs.deltaspike.login.realm.SecurityInterceptor</class>
+    </interceptors>
+-->
 </beans>

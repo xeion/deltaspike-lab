@@ -19,7 +19,7 @@ import org.omnifaces.util.Faces;
 @RequestScoped
 public class Logout
 {
-    public static final String HOME_URL = "login.jsf";
+    private static final String HOME_URL = "login.jsf";
 
     public void submit() throws IOException
     {

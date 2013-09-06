@@ -3,20 +3,7 @@ package labs.deltaspike.jpa;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -27,14 +14,13 @@ import javax.validation.constraints.NotNull;
  * @version $Revision$, $Date$, $Author$
  */
 @Entity
-@Table
+//@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {"domain", "userId"})})
+@Table(name = "delta_user")
 @NamedQueries({
     @NamedQuery(
-        name = "User.find",
-        query = "SELECT u FROM User u WHERE u.userId = :userId"),
+        name = "User.find", query = "SELECT u FROM User u WHERE u.userId = :userId"),
     @NamedQuery(
-        name = "User.list",
-        query = "SELECT u FROM User u")
+        name = "User.list", query = "SELECT u FROM User u")
 })
 public class User implements Serializable
 {
@@ -56,7 +42,7 @@ public class User implements Serializable
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "UserRoles", joinColumns = { @JoinColumn(name = "userId") })
+    @CollectionTable(name = "delta_user_roles", joinColumns = { @JoinColumn(name = "userId") })
     @Column(name = "role")
     private List<Role> roles;
 

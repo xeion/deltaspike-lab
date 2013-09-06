@@ -17,8 +17,9 @@
         <logback.version>1.0.7</logback.version>
         <!--<logback.version>0.9.18</logback.version>-->
         <deltaspike.version>0.4-incubating-SNAPSHOT</deltaspike.version>
-        <shiro.version>1.2.1</shiro.version>
-        <eclipselink.version>2.4.1</eclipselink.version>
+        <!--<shiro.version>2.alpha.0-SNAPSHOT</shiro.version>-->
+        <shiro.version>1.3.0-SNAPSHOT</shiro.version>
+        <eclipselink.version>2.5.0</eclipselink.version>
 
         <arquillian.version>1.0.3.Final</arquillian.version>
     </properties>
@@ -47,6 +48,20 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <!--
+                <repository>
+                    <id>apache-snapshot-local</id>
+                    <name>Apache Snapshots</name>
+                    <url>http://repository.apache.org/snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <updatePolicy>daily</updatePolicy>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+        -->
     </repositories>
 
     <dependencies>
@@ -110,9 +125,9 @@
         -->
 
         <dependency>
-        	<groupId>org.omnifaces</groupId>
-        	<artifactId>omnifaces</artifactId>
-        	<version>1.4.1</version>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>1.4.1</version>
         </dependency>
 
         <!-- Java EE -->
@@ -128,14 +143,14 @@
             <version>3.1</version>
             <scope>provided</scope>
         </dependency>
-<!--
-        <dependency>
-        	<groupId>org.glassfish</groupId>
-        	<artifactId>osgi-jpa</artifactId>
-        	<version>3.1</version>
-            <scope>provided</scope>
-        </dependency>
--->
+        <!--
+                <dependency>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>osgi-jpa</artifactId>
+                    <version>3.1</version>
+                    <scope>provided</scope>
+                </dependency>
+        -->
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.servlet</artifactId>
@@ -180,14 +195,14 @@
                 </dependency>
         -->
         <dependency>
-          <groupId>org.eclipse.persistence</groupId>
-          <artifactId>javax.persistence</artifactId>
-          <version>2.0.0</version>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.0.0</version>
         </dependency>
         <dependency>
-          <groupId>org.eclipse.persistence</groupId>
-          <artifactId>eclipselink</artifactId>
-          <version>${eclipselink.version}</version>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>${eclipselink.version}</version>
         </dependency>
 
         <!-- Security -->
@@ -220,6 +235,15 @@
             <artifactId>shiro-aspectj</artifactId>
             <version>${shiro.version}</version>
         </dependency>
+
+        <!-- TODO: use from a maven repository, for now this module is manulally built from
+                    https://github.com/hwellmann/shiro, also see https://issues.apache.org/jira/browse/SHIRO-422 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-cdi-web</artifactId>
+            <version>2.alpha.0-SNAPSHOT</version>
+        </dependency>
+
 
         <!-- Testing -->
         <dependency>

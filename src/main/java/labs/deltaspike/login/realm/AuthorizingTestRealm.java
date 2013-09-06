@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -21,6 +22,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cdi.ShiroIni;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.slf4j.Logger;
@@ -33,26 +35,29 @@ import org.slf4j.LoggerFactory;
  *         University Library, Sweden
  * @version $Revision$, $Date$, $Author$
  */
-//@Stateless
+@ShiroIni
 public class AuthorizingTestRealm extends AuthorizingRealm implements Serializable
 {
     private static final long serialVersionUID = -2192792862101272316L;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthorizingTestRealm.class);
 
-//    @Inject
-//    private UserFacade userFacade;
+    @Inject
+    private UserFacade userFacade;
 
     public AuthorizingTestRealm()
     {
-
+        super();
     }
 
-//    @PostConstruct
-//    public void initCDI()
-//    {
-//        logger.debug("(initCDI)");
-//    }
+    @PostConstruct
+    public void initCDI()
+    {
+        logger.debug("(initCDI)");
+        if (userFacade != null) {
+            userFacade.init();
+        }
+    }
 
     @Override
     public boolean supports(AuthenticationToken token)
@@ -68,17 +73,16 @@ public class AuthorizingTestRealm extends AuthorizingRealm implements Serializab
 
         // Fails to include CM transaction!
 //        UserFacade userFacade = BeanProvider.getContextualReference(UserFacade.class, false);
-//
-//        User user = userFacade.find(username);
-//        List<Role> roles = user.getRoles();
-//        Set<String> roleNames = new HashSet<>();
-//        for (Role role : roles) {
-//            roleNames.add(role.name());
-//        }
 
+
+        // TODO: Make use of roles
+        User user = userFacade.find(username);
+        List<Role> roles = user.getRoles();
         Set<String> roleNames = new HashSet<>();
-//        roleNames.add("ADMIN"); // this should fail authorization (/secured/** = user, roles[role1])
-        roleNames.add("role1");
+        for (Role role : roles) {
+            roleNames.add(role.name());
+        }
+
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);
 
         return info;
